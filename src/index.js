@@ -1,29 +1,27 @@
-import "./style.css";
-import Sortable from "../node_modules/sortablejs/modular/sortable.complete.esm";
-
-
+import './style.css';
+// eslint-disable-next-line
+import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
 
 const todosListEl = document.getElementById('todos-list');
 
 const todos = [
-    {
-        index: 1,
-        completed: false,
-        description: 'wash the dishes',
-    },
-    {
-        index: 2,
-        completed: true,
-        description: 'Do all challenge',
-    },
+  {
+    index: 1,
+    completed: false,
+    description: 'wash the dishes',
+  },
+  {
+    index: 2,
+    completed: true,
+    description: 'Do all challenge',
+  },
 
 ];
 
 todosListEl.innerHTML = '';
 
 todos.forEach((todo, index) => {
-    
-        todosListEl.innerHTML += `
+  todosListEl.innerHTML += `
         <div class="todo" id=${index}>
           <input type="checkbox" id="todoCheck" name="todoCheck">
           <label class="checkboxes" for="todoCheck">${todo.description}</label> 
@@ -33,15 +31,12 @@ todos.forEach((todo, index) => {
         </div>
         `;
 
-        if(todo.completed){
-            document.getElementById("todoCheck").checked = true;
-
-         }
+  if (todo.completed) {
+    document.getElementById('todoCheck').checked = true;
+  }
 });
-
+// eslint-disable-next-line
 new Sortable(todosListEl, {
-    handle: '.drag',
-    animation: 150
+  handle: '.drag',
+  animation: 150,
 });
-
-
