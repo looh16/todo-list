@@ -5,8 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo-List</title>
-<script defer src="main.js"></script></head>
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 <body>
-    
+
+    <section class="header-section">
+
+        <header>
+            <div class="intro">
+                <div>
+                    <h1>Today's To Do</h1>
+                    <button class="btn"><i class="bi bi-arrow-repeat"></i></button>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <section class="container">
+
+        <div class="new-todo">
+            <form id="todoform">
+              <input class="new" type="text" name="newtodo" id="newtodo" placeholder="Add to your lis ... " /> 
+            </form>
+          </div>
+
+        <div id="todos-list">
+        </div>
+
+        <div>
+            <button class="clear">Clear all completed</button>
+        </div>
+
+    </section>
+
+
 </body>
 </html>

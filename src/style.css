@@ -1,0 +1,107 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.header-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-top: 3rem;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  width: 30vw;
+  height: 35px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.intro div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px;
+}
+
+.intro h1 {
+  align-self: flex-start;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  height: fit-content;
+  background-color: #fff;
+  border: none;
+  margin-left: 10rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+#todos-list {
+  height: calc(var(--container-height) - var(--header-height));
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  width: 30vw;
+  height: 40px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  outline: none;
+  overflow: hidden;
+}
+
+.new-todo {
+  padding: 5px;
+}
+
+.new {
+  width: 30vw;
+  height: 35px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  outline: none;
+}
+
+label {
+  color: grey;
+  padding: 1rem;
+}
+
+input[type=checkbox]:checked + label {
+  text-decoration: line-through;
+}
+
+.clear {
+  display: block;
+  width: 30vw;
+  height: 45px;
+  border: none;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.clear:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.drag {
+  align-self: flex-end;
+  padding-left: 287px;
+}
