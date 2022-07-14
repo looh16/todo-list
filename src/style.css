@@ -60,11 +60,38 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
-  height: 40px;
   border-bottom: 1px solid rgb(219, 219, 219);
   outline: none;
   overflow: hidden;
+  width: 30.5vw;
+}
+
+.todoTask {
+  display: flex;
+  align-self: flex-start;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btnTogle {
+  background-color: #fff;
+  border: none;
+  color: black;
+  padding: 2px 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.option-item {
+  background-color: #fff;
+  border: none;
+  color: black;
+  cursor: pointer;
 }
 
 .new-todo {
@@ -109,20 +136,4 @@ input[type=checkbox]:checked + label {
 
 .drag {
   align-self: flex-end;
-  padding-left: 287px;
-}
-
-.btnTogle {
-  background-color: DodgerBlue;
-  border: none;
-  color: black;
-  padding: 2px 6px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-right: 33.6rem;
-  margin-left: -55rem;
-}
-
-.todoTask {
-  margin-left: 34rem;
 }
