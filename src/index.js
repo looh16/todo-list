@@ -8,7 +8,7 @@ const todoInput = document.getElementById('newtodo');
 
 let todos = [];
 
-todoInput.addEventListener("keydown", function(event) {
+todoInput.addEventListener("keydown", event => {
   if (event.key === "Enter") {
     event.preventDefault();
 
