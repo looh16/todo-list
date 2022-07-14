@@ -8,18 +8,24 @@ const todoInput = document.getElementById('newtodo');
 
 let todos = [];
 
+let addNewTodo = new Todo(false, todoInput.value);
+
 todoInput.addEventListener("keydown", event => {
   if (event.key === "Enter") {
     event.preventDefault();
 
-    let addNewTodo = new Todo(false, todoInput.value);
+    addNewTodo = new Todo(false, todoInput.value);
 
     todos = addNewTodo.addTodo(addNewTodo);
+    console.log(todos);
     todoInput.value = '';
     addNewTodo.renderTodo(todos);
 
   }
 });
+
+window.onload = addNewTodo.renderTodo;
+
 
 // eslint-disable-next-line
 new Sortable(todosListEl, {

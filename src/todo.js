@@ -1,6 +1,4 @@
 
-let todos = [];
-
 export default class Todo {
   static count = 1;
 
@@ -10,20 +8,33 @@ export default class Todo {
     this.description = description;
   }
 
+  getAllTodos = () => {
+
+    const todos = JSON.parse(localStorage.getItem('todos'));
+    return todos || [];
+
+  }
+
   addTodo = (todo) => {
 
+    const todos = this.getAllTodos();
     todos.unshift(todo);
+
+    localStorage.setItem('todos', JSON.stringify(todos));
 
     return todos;
   }
 
-  renderTodo = (todos) => {
+  renderTodo = () => {
+
+    let todos = this.getAllTodos();
+
     const todosListEl = document.getElementById('todos-list');
     todosListEl.innerHTML = '';
 
-    todos.forEach((todo, index) => {
+    todos.forEach((todo) => {
       todosListEl.innerHTML += `
-        <div class="todo" id=${index}>
+        <div class="todo" id=${todo.index}>
         
           <div class="todoTask">
             <input type="checkbox" id="todoCheck" name="todoCheck">
@@ -32,11 +43,11 @@ export default class Todo {
 
           <div class="options">
 
-             <button class="btnTogle"><i class="drag bi bi-three-dots-vertical"></i></button>
-             
-            <div class="optionDropdown">
+             <button id ="dropdown" class="btnTogle"><i class="drag bi bi-three-dots-vertical"></i></button>
+
+            <div id="sectiontohide" class="optionDropdown">
                 <button class="option-item"><i class="bi bi-pencil-square"></i></i></button>
-                <button class="option-item"><i class="bi bi-trash3"></i></button>
+                <button id="delete" class="option-item"><i class="bi bi-trash3" data-index="${todo.index}"></i></button>
             </div>
 
          </div>
@@ -49,34 +60,31 @@ export default class Todo {
       }
     });
 
-    let toggleBtns = document.querySelectorAll('.toggleBtn')
-    let  options = document.querySelectorAll('.options')
-    
-    const optionsToggle = () => {
-        toggleBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.path[3].classList.toggle('active')
-            })
-        })
-    
-        document.addEventListener('click', (e) => {
-            options.forEach(option => {
-                if (e.target.contains(option)) {
-                    document.querySelectorAll('.item').forEach(item => {
-                        item.classList.remove('active')
-                    })
-                }
-            })
-        })
-    }
+   // const deleteBtn = document.getElementById('test');
+   const deleteBtn = document.querySelectorAll('#delete');
+    //deleteBtn.addEventListener('click', this.deleteTodo)
 
-    optionsToggle()
+    deleteBtn.forEach((button) => {
+      button.addEventListener('click', (event) => {
+
+        const id  = parseInt(event.target.getAttribute('data-index'), 10)
+
+        let localStoragetodos = this.getAllTodos();
+
+        localStoragetodos = localStoragetodos.filter((book) => book.index !== id);
+
+       // localStoragetodos.splice(id, 1)
+        localStorage.setItem('todos', JSON.stringify(localStoragetodos))
+      //  renderTodo()
+        location.reload()
+       // this.removeTask(id);
+      });
+    });
 
   }
 
-}
 
-export const checkboxInput = document.getElementById('todoCheck');
+}
 
 
 
