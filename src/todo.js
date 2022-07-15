@@ -1,6 +1,6 @@
 
 export default class Todo {
-  static count = 1;
+  static count = 0;
 
   constructor(completed, description) {
     this.index = this.constructor.count++;
@@ -63,6 +63,8 @@ export default class Todo {
 
     const deleteBtn = document.querySelectorAll('#delete');
     const textLabel = document.querySelectorAll('#description');
+    const dropdownBtn = document.querySelectorAll('#dropdown');
+    const divDropdownBtn = document.querySelectorAll('#sectiontohide');
 
 
     deleteBtn.forEach(button => {
@@ -72,6 +74,20 @@ export default class Todo {
         localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
         localStorage.setItem('todos', JSON.stringify(localStoragetodos))
         location.reload()
+      });
+    });
+
+    dropdownBtn.forEach(dropBtn => {
+      dropBtn.addEventListener('click', (event) => {
+
+        divDropdownBtn.forEach(div => {
+
+          if(div.style.display == 'none')
+          div.style.display = 'block';
+          else
+          div.style.display = 'none';
+        
+        })
       });
     });
 

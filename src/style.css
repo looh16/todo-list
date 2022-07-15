@@ -141,3 +141,7 @@ input[type=checkbox]:checked + .checkboxes {
 .drag {
   align-self: flex-end;
 }
+
+.optionDropdown {
+  display: none;
+}
