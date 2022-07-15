@@ -37,8 +37,10 @@ export default class Todo {
         <div class="todo" id=${todo.index}>
         
           <div class="todoTask">
-            <input type="checkbox" id="todoCheck" name="todoCheck">
-            <label class="checkboxes" for="todoCheck">${todo.description}</label> 
+            <input type="checkbox" id="todoCheck" name="todoCheck"> 
+            <input type="text" id="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
+           
+
           </div>
 
           <div class="options">
@@ -46,7 +48,6 @@ export default class Todo {
              <button id ="dropdown" class="btnTogle"><i class="drag bi bi-three-dots-vertical"></i></button>
 
             <div id="sectiontohide" class="optionDropdown">
-                <button class="option-item"><i class="bi bi-pencil-square"></i></i></button>
                 <button id="delete" class="option-item"><i class="bi bi-trash3" data-index="${todo.index}"></i></button>
             </div>
 
@@ -60,26 +61,33 @@ export default class Todo {
       }
     });
 
-   // const deleteBtn = document.getElementById('test');
-   const deleteBtn = document.querySelectorAll('#delete');
-    //deleteBtn.addEventListener('click', this.deleteTodo)
+    const deleteBtn = document.querySelectorAll('#delete');
+    const textLabel = document.querySelectorAll('#description');
 
-    deleteBtn.forEach((button) => {
+
+    deleteBtn.forEach(button => {
       button.addEventListener('click', (event) => {
-
-        const id  = parseInt(event.target.getAttribute('data-index'), 10)
-
+        const id = parseInt(event.target.getAttribute('data-index'), 10)
         let localStoragetodos = this.getAllTodos();
-
-        localStoragetodos = localStoragetodos.filter((book) => book.index !== id);
-
-       // localStoragetodos.splice(id, 1)
+        localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
         localStorage.setItem('todos', JSON.stringify(localStoragetodos))
-      //  renderTodo()
         location.reload()
-       // this.removeTask(id);
       });
     });
+
+    textLabel.forEach(text => {
+      text.addEventListener('keyup', editTodo);
+    }) 
+
+    function editTodo(e) {
+      
+      const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
+      const id = parseInt(e.target.dataset.editid, 10)
+      const index = localStoragetodos.findIndex(todo => todo.index === id);
+      localStoragetodos[index].description = e.target.value;
+      localStorage.setItem('todos', JSON.stringify(localStoragetodos))
+    }
+
 
   }
 
