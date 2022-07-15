@@ -68,11 +68,8 @@ export default class Todo {
         let localStoragetodos = this.getAllTodos();
         localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
         // eslint-disable-next-line
-        
         for (let id = 0; id < localStoragetodos.length; id++) {
-
-         localStoragetodos[id].index = id;
-          
+          localStoragetodos[id].index = id;
         }
         localStorage.setItem('todos', JSON.stringify(localStoragetodos));
         // eslint-disable-next-line
