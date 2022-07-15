@@ -21,7 +21,7 @@ Any kind of browser.
 ### Setup:
     1. Clone the repository (git clone https://github.com/Ney2/AwesomeBook.git)
     2. Then open the folder in your local environment 
-    3. In terminal console and run:
+    3. In terminal console run:
        - npm install
        - npm run dev
        - npm start
@@ -42,12 +42,6 @@ Feel free to check the [issues page](../../issues/).
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 
