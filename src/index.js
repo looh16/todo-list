@@ -1,40 +1,30 @@
 import './style.css';
 // eslint-disable-next-line
 import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
+import Todo from './todo';
 
 const todosListEl = document.getElementById('todos-list');
+const todoInput = document.getElementById('newtodo');
 
-const todos = [
-  {
-    index: 1,
-    completed: false,
-    description: 'wash the dishes',
-  },
-  {
-    index: 2,
-    completed: true,
-    description: 'Do all challenge',
-  },
+let todos = [];
 
-];
+let addNewTodo = new Todo(false, todoInput.value);
 
-todosListEl.innerHTML = '';
+todoInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
 
-todos.forEach((todo, index) => {
-  todosListEl.innerHTML += `
-        <div class="todo" id=${index}>
-          <input type="checkbox" id="todoCheck" name="todoCheck">
-          <label class="checkboxes" for="todoCheck">${todo.description}</label> 
-          <span>
-            <i class="drag bi bi-three-dots-vertical"></i>
-          </span>
-        </div>
-        `;
+    addNewTodo = new Todo(false, todoInput.value);
 
-  if (todo.completed) {
-    document.getElementById('todoCheck').checked = true;
+    todos = addNewTodo.addTodo(addNewTodo);
+    console.log(todos);
+    todoInput.value = '';
+    addNewTodo.renderTodo(todos);
   }
 });
+
+window.onload = addNewTodo.renderTodo;
+
 // eslint-disable-next-line
 new Sortable(todosListEl, {
   handle: '.drag',
