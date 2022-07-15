@@ -1,22 +1,19 @@
-
 export default class Todo {
   static count = 0;
 
   constructor(completed, description) {
+    // eslint-disable-next-line
     this.index = this.constructor.count++;
     this.completed = completed;
     this.description = description;
   }
 
   getAllTodos = () => {
-
     const todos = JSON.parse(localStorage.getItem('todos'));
     return todos || [];
-
   }
 
   addTodo = (todo) => {
-
     const todos = this.getAllTodos();
     todos.unshift(todo);
 
@@ -26,8 +23,7 @@ export default class Todo {
   }
 
   renderTodo = () => {
-
-    let todos = this.getAllTodos();
+    const todos = this.getAllTodos();
 
     const todosListEl = document.getElementById('todos-list');
     todosListEl.innerHTML = '';
@@ -66,50 +62,37 @@ export default class Todo {
     const dropdownBtn = document.querySelectorAll('#dropdown');
     const divDropdownBtn = document.querySelectorAll('#sectiontohide');
 
-
-    deleteBtn.forEach(button => {
+    deleteBtn.forEach((button) => {
       button.addEventListener('click', (event) => {
-        const id = parseInt(event.target.getAttribute('data-index'), 10)
+        const id = parseInt(event.target.getAttribute('data-index'), 10);
         let localStoragetodos = this.getAllTodos();
         localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
-        localStorage.setItem('todos', JSON.stringify(localStoragetodos))
-        location.reload()
+        // eslint-disable-next-line
+        localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+        // eslint-disable-next-line
+        location.reload();
       });
     });
 
-    dropdownBtn.forEach(dropBtn => {
+    dropdownBtn.forEach((dropBtn) => {
       dropBtn.addEventListener('click', (event) => {
-
-        divDropdownBtn.forEach(div => {
-
-          if(div.style.display == 'none')
-          div.style.display = 'block';
-          else
-          div.style.display = 'none';
-        
-        })
+        event.preventDefault();
+        divDropdownBtn.forEach((div) => {
+          if (div.style.display === 'none') { div.style.display = 'block'; } else { div.style.display = 'none'; }
+        });
       });
     });
-
-    textLabel.forEach(text => {
-      text.addEventListener('keyup', editTodo);
-    }) 
 
     function editTodo(e) {
-      
       const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
-      const id = parseInt(e.target.dataset.editid, 10)
-      const index = localStoragetodos.findIndex(todo => todo.index === id);
+      const id = parseInt(e.target.dataset.editid, 10);
+      const index = localStoragetodos.findIndex((todo) => todo.index === id);
       localStoragetodos[index].description = e.target.value;
-      localStorage.setItem('todos', JSON.stringify(localStoragetodos))
+      localStorage.setItem('todos', JSON.stringify(localStoragetodos));
     }
 
-
+    textLabel.forEach((text) => {
+      text.addEventListener('keyup', editTodo);
+    });
   }
-
-
 }
-
-
-
-

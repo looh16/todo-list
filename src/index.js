@@ -10,8 +10,8 @@ let todos = [];
 
 let addNewTodo = new Todo(false, todoInput.value);
 
-todoInput.addEventListener("keydown", event => {
-  if (event.key === "Enter") {
+todoInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
     event.preventDefault();
 
     addNewTodo = new Todo(false, todoInput.value);
@@ -20,12 +20,10 @@ todoInput.addEventListener("keydown", event => {
     console.log(todos);
     todoInput.value = '';
     addNewTodo.renderTodo(todos);
-
   }
 });
 
 window.onload = addNewTodo.renderTodo;
-
 
 // eslint-disable-next-line
 new Sortable(todosListEl, {
