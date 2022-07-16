@@ -1,20 +1,12 @@
-export default class Todo {
-  static count = 0;
+import { updateToFalse, updateToTrue } from "./update-status";
 
-  constructor(completed, description) {
-    // eslint-disable-next-line
-    this.index = this.constructor.count++;
-    this.completed = completed;
-    this.description = description;
-  }
-
-  getAllTodos = () => {
+  export const getAllTodos = () => {
     const todos = JSON.parse(localStorage.getItem('todos'));
     return todos || [];
   }
 
-  addTodo = (todo) => {
-    const todos = this.getAllTodos();
+  export const addTodo = (todo) => {
+    const todos = getAllTodos();
     todos.unshift(todo);
 
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -22,8 +14,8 @@ export default class Todo {
     return todos;
   }
 
-  renderTodo = () => {
-    const todos = this.getAllTodos();
+  export const renderTodo = () => {
+    const todos = getAllTodos();
 
     const todosListEl = document.getElementById('todos-list');
     todosListEl.innerHTML = '';
@@ -33,7 +25,7 @@ export default class Todo {
         <div class="todo" id=${todo.index}>
         
           <div class="todoTask">
-            <input type="checkbox" id="todoCheck" name="todoCheck"> 
+            <input type="checkbox" id="todoCheck" name="todoCheck" data-todoStatus="${todo.index}" data-todoCompleted="${todo.completed}"> 
             <input type="text" id="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
            
 
@@ -51,21 +43,26 @@ export default class Todo {
         </div>
        
         `;
-
-      if (todo.completed) {
-        document.getElementById('todoCheck').checked = true;
-      }
     });
 
     const deleteBtn = document.querySelectorAll('#delete');
     const textLabel = document.querySelectorAll('#description');
     const dropdownBtn = document.querySelectorAll('#dropdown');
     const divDropdownBtn = document.querySelectorAll('#sectiontohide');
+    const checkBoxes = document.querySelectorAll('#todoCheck');
+
+    for (let index = 0; index < checkBoxes.length; index++) {
+      if(checkBoxes[index].dataset.todocompleted === "true"){
+        checkBoxes[index].checked = true;
+      }
+      
+    }
+
 
     deleteBtn.forEach((button) => {
       button.addEventListener('click', (event) => {
         const id = parseInt(event.target.getAttribute('data-index'), 10);
-        let localStoragetodos = this.getAllTodos();
+        let localStoragetodos = getAllTodos();
         localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
         // eslint-disable-next-line
         for (let id = 0; id < localStoragetodos.length; id++) {
@@ -97,5 +94,19 @@ export default class Todo {
     textLabel.forEach((text) => {
       text.addEventListener('keyup', editTodo);
     });
+
+    checkBoxes.forEach(checkBox =>{
+      checkBox.addEventListener('click', (event) =>{
+        const localStoragetodos = getAllTodos();
+        const id = parseInt(event.target.dataset.todostatus, 10);
+        let todo = localStoragetodos.find(obj => obj.index === id);
+        if (todo.completed) {
+          updateToFalse(todo)
+        } else {
+          updateToTrue(todo)
+        }
+      })
+    })
+  
+    
   }
-}
