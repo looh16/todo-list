@@ -1,12 +1,11 @@
 import './style.css';
 // eslint-disable-next-line
 import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
-import Todo from './todo';
+import Todo from './todo-class';
+import { addTodo, renderTodo } from './todo';
 
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');
-
-let todos = [];
 
 let addNewTodo = new Todo(false, todoInput.value);
 
@@ -16,14 +15,13 @@ todoInput.addEventListener('keydown', (event) => {
 
     addNewTodo = new Todo(false, todoInput.value);
 
-    todos = addNewTodo.addTodo(addNewTodo);
-    console.log(todos);
+    addTodo(addNewTodo);
     todoInput.value = '';
-    addNewTodo.renderTodo(todos);
+    renderTodo();
   }
 });
 
-window.onload = addNewTodo.renderTodo;
+window.onload = renderTodo;
 
 // eslint-disable-next-line
 new Sortable(todosListEl, {

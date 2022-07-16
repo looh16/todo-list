@@ -1,39 +1,32 @@
-export default class Todo {
-  static count = 0;
+// eslint-disable-next-line
+import { updateToFalse, updateToTrue } from './update-status';
 
-  constructor(completed, description) {
-    // eslint-disable-next-line
-    this.index = this.constructor.count++;
-    this.completed = completed;
-    this.description = description;
-  }
+export const getAllTodos = () => {
+  const todos = JSON.parse(localStorage.getItem('todos'));
+  return todos || [];
+};
 
-  getAllTodos = () => {
-    const todos = JSON.parse(localStorage.getItem('todos'));
-    return todos || [];
-  }
+export const addTodo = (todo) => {
+  const todos = getAllTodos();
+  todos.unshift(todo);
 
-  addTodo = (todo) => {
-    const todos = this.getAllTodos();
-    todos.unshift(todo);
+  localStorage.setItem('todos', JSON.stringify(todos));
 
-    localStorage.setItem('todos', JSON.stringify(todos));
+  return todos;
+};
 
-    return todos;
-  }
+export const renderTodo = () => {
+  const todos = getAllTodos();
 
-  renderTodo = () => {
-    const todos = this.getAllTodos();
+  const todosListEl = document.getElementById('todos-list');
+  todosListEl.innerHTML = '';
 
-    const todosListEl = document.getElementById('todos-list');
-    todosListEl.innerHTML = '';
-
-    todos.forEach((todo) => {
-      todosListEl.innerHTML += `
+  todos.forEach((todo) => {
+    todosListEl.innerHTML += `
         <div class="todo" id=${todo.index}>
         
           <div class="todoTask">
-            <input type="checkbox" id="todoCheck" name="todoCheck"> 
+            <input type="checkbox" id="todoCheck" name="todoCheck" data-todoStatus="${todo.index}" data-todoCompleted="${todo.completed}"> 
             <input type="text" id="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
            
 
@@ -51,51 +44,67 @@ export default class Todo {
         </div>
        
         `;
+  });
 
+  const deleteBtn = document.querySelectorAll('#delete');
+  const textLabel = document.querySelectorAll('#description');
+  const dropdownBtn = document.querySelectorAll('#dropdown');
+  const divDropdownBtn = document.querySelectorAll('#sectiontohide');
+  const checkBoxes = document.querySelectorAll('#todoCheck');
+
+  // eslint-disable-next-line
+  for (let index = 0; index < checkBoxes.length; index++) {
+    if (checkBoxes[index].dataset.todocompleted === 'true') {
+      checkBoxes[index].checked = true;
+    }
+  }
+
+  deleteBtn.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const id = parseInt(event.target.getAttribute('data-index'), 10);
+      let localStoragetodos = getAllTodos();
+      localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
+      // eslint-disable-next-line
+        for (let id = 0; id < localStoragetodos.length; id++) {
+        localStoragetodos[id].index = id;
+      }
+      localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+      // eslint-disable-next-line
+        location.reload();
+    });
+  });
+
+  dropdownBtn.forEach((dropBtn) => {
+    dropBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      divDropdownBtn.forEach((div) => {
+        if (div.style.display === 'none') { div.style.display = 'block'; } else { div.style.display = 'none'; }
+      });
+    });
+  });
+
+  function editTodo(e) {
+    const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
+    const id = parseInt(e.target.dataset.editid, 10);
+    const index = localStoragetodos.findIndex((todo) => todo.index === id);
+    localStoragetodos[index].description = e.target.value;
+    localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+  }
+
+  textLabel.forEach((text) => {
+    text.addEventListener('keyup', editTodo);
+  });
+
+  checkBoxes.forEach((checkBox) => {
+    checkBox.addEventListener('click', (event) => {
+      const localStoragetodos = getAllTodos();
+      const id = parseInt(event.target.dataset.todostatus, 10);
+      const todo = localStoragetodos.find((obj) => obj.index === id);
       if (todo.completed) {
-        document.getElementById('todoCheck').checked = true;
+        updateToFalse(todo);
+      } else {
+        updateToTrue(todo);
       }
     });
-
-    const deleteBtn = document.querySelectorAll('#delete');
-    const textLabel = document.querySelectorAll('#description');
-    const dropdownBtn = document.querySelectorAll('#dropdown');
-    const divDropdownBtn = document.querySelectorAll('#sectiontohide');
-
-    deleteBtn.forEach((button) => {
-      button.addEventListener('click', (event) => {
-        const id = parseInt(event.target.getAttribute('data-index'), 10);
-        let localStoragetodos = this.getAllTodos();
-        localStoragetodos = localStoragetodos.filter((todo) => todo.index !== id);
-        // eslint-disable-next-line
-        for (let id = 0; id < localStoragetodos.length; id++) {
-          localStoragetodos[id].index = id;
-        }
-        localStorage.setItem('todos', JSON.stringify(localStoragetodos));
-        // eslint-disable-next-line
-        location.reload();
-      });
-    });
-
-    dropdownBtn.forEach((dropBtn) => {
-      dropBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        divDropdownBtn.forEach((div) => {
-          if (div.style.display === 'none') { div.style.display = 'block'; } else { div.style.display = 'none'; }
-        });
-      });
-    });
-
-    function editTodo(e) {
-      const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
-      const id = parseInt(e.target.dataset.editid, 10);
-      const index = localStoragetodos.findIndex((todo) => todo.index === id);
-      localStoragetodos[index].description = e.target.value;
-      localStorage.setItem('todos', JSON.stringify(localStoragetodos));
-    }
-
-    textLabel.forEach((text) => {
-      text.addEventListener('keyup', editTodo);
-    });
-  }
-}
+  });
+};
