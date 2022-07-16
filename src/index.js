@@ -18,7 +18,6 @@ todoInput.addEventListener('keydown', (event) => {
     addNewTodo = new Todo(false, todoInput.value);
 
     todos = addTodo(addNewTodo);
-    console.log(todos);
     todoInput.value = '';
     renderTodo();
   }
