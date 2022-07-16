@@ -7,8 +7,6 @@ import { addTodo, renderTodo } from './todo';
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');
 
-
-
 let addNewTodo = new Todo(false, todoInput.value);
 
 todoInput.addEventListener('keydown', (event) => {
