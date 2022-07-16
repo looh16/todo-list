@@ -7,7 +7,7 @@ import { addTodo, renderTodo } from './todo';
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');
 
-let todos = [];
+
 
 let addNewTodo = new Todo(false, todoInput.value);
 
@@ -17,7 +17,7 @@ todoInput.addEventListener('keydown', (event) => {
 
     addNewTodo = new Todo(false, todoInput.value);
 
-    todos = addTodo(addNewTodo);
+    addTodo(addNewTodo);
     todoInput.value = '';
     renderTodo();
   }
