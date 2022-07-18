@@ -3,8 +3,8 @@
   \*********************************************************************************************************/
 @font-face {
   font-family: "bootstrap-icons";
-  src: url(/todo_list.github.io/fonts/bootstrap-icons.woff2?08efbba7c53d8c5413793eecb19b20bb) format("woff2"),
-url(/todo_list.github.io/fonts/bootstrap-icons.woff?08efbba7c53d8c5413793eecb19b20bb) format("woff");
+  src: url(/todo_list/fonts/bootstrap-icons.woff2?08efbba7c53d8c5413793eecb19b20bb) format("woff2"),
+url(/todo_list/fonts/bootstrap-icons.woff?08efbba7c53d8c5413793eecb19b20bb) format("woff");
 }
 
 .bi::before,
