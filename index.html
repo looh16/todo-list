@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+<script defer src="/todo_list.github.io/main.js"></script><link href="/todo_list.github.io/main.css" rel="stylesheet"></head>
+<body>
+
+    <section class="header-section">
+
+        <header>
+            <div class="intro">
+                <div>
+                    <h1>Today's To Do</h1>
+                    <button class="btn" id="refreshDom"><i class="bi bi-arrow-repeat"></i></button>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <section class="container">
+
+        <div class="new-todo">
+              <input class="new" type="text" name="newtodo" id="newtodo" placeholder="Add to your list... " /> 
+          </div>
+
+        <div id="todos-list">
+            
+        </div>
+
+        <div>
+            <button class="clear" id="deleteAllCompleted">Clear all completed</button>
+        </div>
+
+    </section>
+
+
+</body>
+</html>
