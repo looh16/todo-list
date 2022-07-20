@@ -1,14 +1,18 @@
 import Todo from './todo-class';
 import { addTodo } from './todo';
-//import { getAllTodos } from './todo.js'
+import { deleteTodo } from './delete-todo';
+import { getAllTodos } from './todo';
+import 'jest-localstorage-mock';
 
 
-
-  
-  describe('my beverage', () => {
+  describe('my todo task', () => {
 
     let todo = new Todo(false, "My task");
-    let result = addTodo(todo);
+    let todo1 = new Todo(false, "My task");
+    let todo2 = new Todo(false, "My task");
+    addTodo(todo);
+    addTodo(todo1);
+    addTodo(todo2);
 
     document.body.innerHTML =
     `
@@ -34,9 +38,18 @@ import { addTodo } from './todo';
        
         `
 
-    test('Add', () => {
-      expect(result[0].description).toBe("My task");
+    test('add', () => {
+    //  expect(result[0].description).toBe("My task");
+      expect(localStorage.getItem.mock.calls.length).toBe(3);
     });
-  });
 
-  
+    test('delete', () => {
+        const deleteBtn = document.querySelectorAll('#delete');
+        deleteBtn.forEach = (btn) => { 
+          deleteTodo(btn);
+        }
+        expect(localStorage.getItem.mock.calls.length).toBe(3);
+        
+    })
+
+  });
