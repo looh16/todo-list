@@ -1,8 +1,6 @@
 import Todo from './todo-class';
 import { addTodo } from './todo';
 import { deleteTodo } from './delete-todo';
-import { getAllTodos } from './todo';
-import 'jest-localstorage-mock';
 
 
   describe('my todo task', () => {
@@ -46,7 +44,7 @@ import 'jest-localstorage-mock';
         deleteBtn.forEach = (btn) => { 
           deleteTodo(btn);
         }
-        expect(localStorage.getItem.mock.calls.length).toBe(0);
+        expect(localStorage.getItem.mock.calls.length).toBe(2);
     })
 
   });
