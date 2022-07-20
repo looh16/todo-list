@@ -7,8 +7,10 @@ import { deleteTodo } from './delete-todo';
 
     let todo = new Todo(false, "My task");
     let todo1 = new Todo(false, "My task");
+    let todo2 = new Todo(false, "My task");
     addTodo(todo);
     addTodo(todo1);
+    addTodo(todo2);
 
     document.body.innerHTML =
     `
@@ -36,7 +38,7 @@ import { deleteTodo } from './delete-todo';
 
     test('add', () => {
     //  expect(result[0].description).toBe("My task");
-      expect(localStorage.getItem.mock.calls.length).toBe(2);
+      expect(localStorage.getItem.mock.calls.length).toBe(3);
     });
 
     test('delete', () => {
@@ -44,7 +46,8 @@ import { deleteTodo } from './delete-todo';
         deleteBtn.forEach = (btn) => { 
           deleteTodo(btn);
         }
-        expect(localStorage.getItem.mock.calls.length).toBe(2);
+        expect(localStorage.getItem.mock.calls.length).toBe(3);
+        
     })
 
   });
