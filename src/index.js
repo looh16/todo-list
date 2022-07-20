@@ -3,9 +3,13 @@ import './style.css';
 import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
 import Todo from './todo-class';
 import { addTodo, renderTodo } from './todo';
+import { getAllTodos } from './todo';
+
 
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');
+const btnClear = document.getElementById('deleteAllCompleted');
+
 
 let addNewTodo = new Todo(false, todoInput.value);
 
@@ -19,6 +23,22 @@ todoInput.addEventListener('keydown', (event) => {
     todoInput.value = '';
     renderTodo();
   }
+});
+
+// eslint-disable-next-line
+btnClear.addEventListener('click', (e) => {
+  let localStoragetodos = getAllTodos();
+  localStoragetodos = localStoragetodos.filter((todo) => todo.completed !== true);
+  localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+  // eslint-disable-next-line
+  location.reload();
+});
+
+const btnRefresh = document.getElementById('refreshDom');
+// eslint-disable-next-line
+btnRefresh.addEventListener('click', (e) => {
+// eslint-disable-next-line
+  location.reload();
 });
 
 window.onload = renderTodo;
