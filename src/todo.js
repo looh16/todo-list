@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import { updateToFalse, updateToTrue } from './update-status';
+// eslint-disable-next-line
 import { deleteTodo } from './delete-todo';
 
 export const getAllTodos = () => {

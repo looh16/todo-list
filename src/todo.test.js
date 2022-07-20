@@ -2,18 +2,15 @@ import Todo from './todo-class';
 import { addTodo } from './todo';
 import { deleteTodo } from './delete-todo';
 
+describe('my todo task', () => {
+  const todo = new Todo(false, 'My task');
+  const todo1 = new Todo(false, 'My task');
+  const todo2 = new Todo(false, 'My task');
+  addTodo(todo);
+  addTodo(todo1);
+  addTodo(todo2);
 
-  describe('my todo task', () => {
-
-    let todo = new Todo(false, "My task");
-    let todo1 = new Todo(false, "My task");
-    let todo2 = new Todo(false, "My task");
-    addTodo(todo);
-    addTodo(todo1);
-    addTodo(todo2);
-
-    document.body.innerHTML =
-    `
+  document.body.innerHTML = `
         <div class="todo" id=${todo.index}>
         
           <div class="todoTask">
@@ -34,20 +31,18 @@ import { deleteTodo } from './delete-todo';
          </div>
         </div>
        
-        `
+        `;
 
-    test('add', () => {
+  test('add', () => {
     //  expect(result[0].description).toBe("My task");
-      expect(localStorage.getItem.mock.calls.length).toBe(3);
-    });
-
-    test('delete', () => {
-        const deleteBtn = document.querySelectorAll('#delete');
-        deleteBtn.forEach = (btn) => { 
-          deleteTodo(btn);
-        }
-        expect(localStorage.getItem.mock.calls.length).toBe(3);
-        
-    })
-
+    expect(localStorage.getItem.mock.calls.length).toBe(3);
   });
+
+  test('delete', () => {
+    const deleteBtn = document.querySelectorAll('#delete');
+    deleteBtn.forEach = (btn) => {
+      deleteTodo(btn);
+    };
+    expect(localStorage.getItem.mock.calls.length).toBe(3);
+  });
+});
