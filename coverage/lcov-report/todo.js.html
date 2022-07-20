@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.51% </span>
+                <span class="strong">18.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/58</span>
+                <span class='fraction'>9/49</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">14.28% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/16</span>
+                <span class='fraction'>2/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.64% </span>
+                <span class="strong">20.45% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/51</span>
+                <span class='fraction'>9/44</span>
             </div>
         
             
@@ -163,31 +163,22 @@
 <a name='L98'></a><a href='#L98'>98</a>
 <a name='L99'></a><a href='#L99'>99</a>
 <a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -236,17 +227,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -285,6 +265,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// eslint-disable-next-line
 import { updateToFalse, updateToTrue } from './update-status';
+import { deleteTodo } from './delete-todo';
 &nbsp;
 export const getAllTodos = () =&gt; {
   const todos = JSON.parse(localStorage.getItem('todos'));
@@ -345,18 +326,7 @@ export const renderTodo = <span class="fstat-no" title="function not covered" >(
   }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  deleteBtn.forEach(<span class="fstat-no" title="function not covered" >(b</span>utton) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    button.addEventListener('click', <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
-      const id = <span class="cstat-no" title="statement not covered" >parseInt(event.target.getAttribute('data-index'), 10);</span>
-      let localStoragetodos = <span class="cstat-no" title="statement not covered" >getAllTodos();</span>
-<span class="cstat-no" title="statement not covered" >      localStoragetodos = localStoragetodos.filter(<span class="fstat-no" title="function not covered" >(t</span>odo) =&gt; <span class="cstat-no" title="statement not covered" >todo.index !== id)</span>;</span>
-      // eslint-disable-next-line
-<span class="cstat-no" title="statement not covered" >        for (let id = <span class="cstat-no" title="statement not covered" >0;</span> id &lt; localStoragetodos.length; id++) {</span>
-<span class="cstat-no" title="statement not covered" >        localStoragetodos[id].index = id;</span>
-      }
-<span class="cstat-no" title="statement not covered" >      localStorage.setItem('todos', JSON.stringify(localStoragetodos));</span>
-      // eslint-disable-next-line
-<span class="cstat-no" title="statement not covered" >        location.reload();</span>
-    });
+<span class="cstat-no" title="statement not covered" >    deleteTodo(button);</span>
   });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  dropdownBtn.forEach(<span class="fstat-no" title="function not covered" >(d</span>ropBtn) =&gt; {</span>
@@ -400,7 +370,7 @@ export const renderTodo = <span class="fstat-no" title="function not covered" >(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-20T12:13:29.806Z
+                at 2022-07-20T16:58:30.358Z
             </div>
         <script src="prettify.js"></script>
         <script>
