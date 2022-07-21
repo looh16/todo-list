@@ -76,7 +76,11 @@ export const renderTodo = () => {
   });
 
   function editTodo(e) {
-    editTodoTask(e);
+    const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
+    const id = parseInt(e.target.dataset.editid, 10);
+    const index = localStoragetodos.findIndex((todo) => todo.index === id);
+    let description = e.target.value;
+    editTodoTask(index, description);
   }
 
   textLabel.forEach((text) => {
