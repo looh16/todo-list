@@ -50,7 +50,7 @@ export const renderTodo = () => {
   });
 
   const deleteBtn = document.querySelectorAll('#delete');
-  const textLabel = document.querySelectorAll('#description');
+  const textLabel = document.querySelectorAll('.description');
   const dropdownBtn = document.querySelectorAll('#dropdown');
   const divDropdownBtn = document.querySelectorAll('#sectiontohide');
   const checkBoxes = document.querySelectorAll('#todoCheck');
@@ -76,7 +76,8 @@ export const renderTodo = () => {
   });
 
   function editTodo(e) {
-    editTodoTask(e);
+    const id = parseInt(e.target.dataset.editid, 10);
+    editTodoTask(id);
   }
 
   textLabel.forEach((text) => {

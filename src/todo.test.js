@@ -1,6 +1,7 @@
 import Todo from './todo-class';
 import { addTodo } from './todo';
 import { deleteTodo } from './delete-todo';
+import { editTodoTask } from './edit-todo'
 
 describe('my todo task', () => {
   const todo = new Todo(false, 'My task');
@@ -15,7 +16,7 @@ describe('my todo task', () => {
         
           <div class="todoTask">
             <input type="checkbox" id="todoCheck" name="todoCheck" data-todoStatus="${todo.index}" data-todoCompleted="${todo.completed}"> 
-            <input type="text" id="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
+            <input type="text" class="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
            
 
           </div>
@@ -46,3 +47,18 @@ describe('my todo task', () => {
     expect(localStorage.getItem.mock.calls.length).toBe(3);
   });
 });
+
+describe('edit task', ()=>{
+  test("editTodoTask", ()=>{
+    //editTodoTask();
+ const taskOne = document.querySelectorAll('.description')[0].textContent;
+ expect(taskOne).toBe('');
+  })
+  /*
+  test("editTodoTask",()=>{
+    editTodoTask('hello');
+  const taskTwo = document.querySelectorAll('.description')[1].editTodoTask('hello');
+  expect(taskTwo).toBe('hello');
+  })
+  */
+})
