@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import { updateToFalse, updateToTrue } from './update-status';
+import { editTodoTask } from './edit-todo';
 // eslint-disable-next-line
 import { deleteTodo } from './delete-todo';
 
@@ -49,7 +50,7 @@ export const renderTodo = () => {
   });
 
   const deleteBtn = document.querySelectorAll('#delete');
-  const textLabel = document.querySelectorAll('#description');
+  const textLabel = document.querySelectorAll('.description');
   const dropdownBtn = document.querySelectorAll('#dropdown');
   const divDropdownBtn = document.querySelectorAll('#sectiontohide');
   const checkBoxes = document.querySelectorAll('#todoCheck');
@@ -78,8 +79,8 @@ export const renderTodo = () => {
     const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
     const id = parseInt(e.target.dataset.editid, 10);
     const index = localStoragetodos.findIndex((todo) => todo.index === id);
-    localStoragetodos[index].description = e.target.value;
-    localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+    const description = e.target.value;
+    editTodoTask(index, description);
   }
 
   textLabel.forEach((text) => {
