@@ -3,6 +3,7 @@ import './style.css';
 import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
 import Todo from './todo-class';
 import { addTodo, renderTodo, getAllTodos } from './todo';
+import { clearAllCompleted } from './clear-all';
 
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');
@@ -24,11 +25,7 @@ todoInput.addEventListener('keydown', (event) => {
 
 // eslint-disable-next-line
 btnClear.addEventListener('click', (e) => {
-  let localStoragetodos = getAllTodos();
-  localStoragetodos = localStoragetodos.filter((todo) => todo.completed !== true);
-  localStorage.setItem('todos', JSON.stringify(localStoragetodos));
-  // eslint-disable-next-line
-  location.reload();
+  clearAllCompleted();
 });
 
 const btnRefresh = document.getElementById('refreshDom');

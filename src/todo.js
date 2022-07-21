@@ -76,8 +76,16 @@ export const renderTodo = () => {
   });
 
   function editTodo(e) {
+<<<<<<< HEAD
     const id = parseInt(e.target.dataset.editid, 10);
     editTodoTask(id);
+=======
+    const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
+    const id = parseInt(e.target.dataset.editid, 10);
+    const index = localStoragetodos.findIndex((todo) => todo.index === id);
+    let description = e.target.value;
+    editTodoTask(index, description);
+>>>>>>> 461a8e7a3b4c4c45c66fee05993796a50b2191a3
   }
 
   textLabel.forEach((text) => {

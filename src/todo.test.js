@@ -1,10 +1,12 @@
 import Todo from './todo-class';
 import { addTodo } from './todo';
 import { deleteTodo } from './delete-todo';
-import { editTodoTask } from './edit-todo'
+import { editTodoTask } from './edit-todo';
+import { updateToTrue } from './update-status';
+import { clearAllCompleted } from './clear-all';
 
 describe('my todo task', () => {
-  const todo = new Todo(false, 'My task');
+  const todo = new Todo(true, 'My task');
   const todo1 = new Todo(false, 'My task');
   const todo2 = new Todo(false, 'My task');
   addTodo(todo);
@@ -35,7 +37,6 @@ describe('my todo task', () => {
         `;
 
   test('add', () => {
-    //  expect(result[0].description).toBe("My task");
     expect(localStorage.getItem.mock.calls.length).toBe(3);
   });
 
@@ -46,6 +47,22 @@ describe('my todo task', () => {
     };
     expect(localStorage.getItem.mock.calls.length).toBe(3);
   });
+
+  test('edit', () => {
+      editTodoTask(todo.index, "My task");
+      expect(todo.description).toBe("My task");
+  });
+
+  test('update status', () => {
+    updateToTrue(todo);
+  expect(todo.completed).toBe(true);
+});
+
+test('clear all', () => {
+  clearAllCompleted();
+expect(localStorage.getItem.mock.calls.length).toBe(6);
+});
+
 });
 
 describe('edit task', ()=>{
