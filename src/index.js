@@ -1,9 +1,9 @@
 import './style.css';
 // eslint-disable-next-line
 import Sortable from '../node_modules/sortablejs/modular/sortable.complete.esm';
-import Todo from './todo-class';
-import { addTodo, renderTodo, getAllTodos } from './todo';
-import { clearAllCompleted } from './clear-all';
+import Todo from './todo-class.js';
+import { addTodo, renderTodo } from './todo.js';
+import { clearAllCompleted } from './clear-all.js';
 
 const todosListEl = document.getElementById('todos-list');
 const todoInput = document.getElementById('newtodo');

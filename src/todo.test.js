@@ -1,14 +1,13 @@
-import Todo from './todo-class';
-import { addTodo } from './todo';
-import { deleteTodo } from './delete-todo';
-import { editTodoTask } from './edit-todo';
-import { updateToTrue } from './update-status';
-import { clearAllCompleted } from './clear-all';
+import Todo from './todo-class.js';
+import { addTodo } from './todo.js';
+import { deleteTodo } from './delete-todo.js';
+import { editTodoTask } from './edit-todo.js';
+import { clearAllCompleted } from './clear-all.js';
 
 describe('my todo task', () => {
   const todo = new Todo(true, 'My task');
-  const todo1 = new Todo(false, 'My task');
-  const todo2 = new Todo(false, 'My task');
+  const todo1 = new Todo(true, 'My task');
+  const todo2 = new Todo(true, 'My task');
   addTodo(todo);
   addTodo(todo1);
   addTodo(todo2);
@@ -49,33 +48,19 @@ describe('my todo task', () => {
   });
 
   test('edit', () => {
-      editTodoTask(todo.index, "My task");
-      expect(todo.description).toBe("My task");
+    editTodoTask(todo.index, 'My task');
+    expect(todo.description).toBe('My task');
   });
 
   test('update status', () => {
-    updateToTrue(todo);
-  expect(todo.completed).toBe(true);
-});
+    const completeOne = document.querySelectorAll('#todoCheck')[0].checked;
+    expect(completeOne).toBe(false);
+  });
 
-test('clear all', () => {
-  clearAllCompleted();
-expect(localStorage.getItem.mock.calls.length).toBe(6);
-});
+  test('clear all', () => {
+    clearAllCompleted();
+    const desc = document.querySelectorAll('.description');
 
+    expect(desc.length).toBe(1);
+  });
 });
-
-describe('edit task', ()=>{
-  test("editTodoTask", ()=>{
-    //editTodoTask();
- const taskOne = document.querySelectorAll('.description')[0].textContent;
- expect(taskOne).toBe('');
-  })
-  /*
-  test("editTodoTask",()=>{
-    editTodoTask('hello');
-  const taskTwo = document.querySelectorAll('.description')[1].editTodoTask('hello');
-  expect(taskTwo).toBe('hello');
-  })
-  */
-})
