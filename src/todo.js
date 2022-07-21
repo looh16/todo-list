@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import { updateToFalse, updateToTrue } from './update-status';
+import { editTodoTask } from './edit-todo';
 // eslint-disable-next-line
 import { deleteTodo } from './delete-todo';
 
@@ -75,11 +76,7 @@ export const renderTodo = () => {
   });
 
   function editTodo(e) {
-    const localStoragetodos = JSON.parse(localStorage.getItem('todos'));
-    const id = parseInt(e.target.dataset.editid, 10);
-    const index = localStoragetodos.findIndex((todo) => todo.index === id);
-    localStoragetodos[index].description = e.target.value;
-    localStorage.setItem('todos', JSON.stringify(localStoragetodos));
+    editTodoTask(e);
   }
 
   textLabel.forEach((text) => {
