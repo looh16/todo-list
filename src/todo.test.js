@@ -4,7 +4,6 @@ import { deleteTodo } from './delete-todo';
 import { getAllTodos } from './todo';
 import 'jest-localstorage-mock';
 
-
   describe('my todo task', () => {
 
     let todo = new Todo(false, "My task");
@@ -42,7 +41,7 @@ import 'jest-localstorage-mock';
     //  expect(result[0].description).toBe("My task");
       expect(localStorage.getItem.mock.calls.length).toBe(3);
     });
-
+/*
     test('delete', () => {
         const deleteBtn = document.querySelectorAll('#delete');
         deleteBtn.forEach = (btn) => { 
@@ -51,5 +50,29 @@ import 'jest-localstorage-mock';
         expect(localStorage.getItem.mock.calls.length).toBe(3);
         
     })
+*/
+test('delete', () => {
+  const deleteBtn = document.querySelectorAll('#delete');
+for (let item of deleteBtn)
+    deleteTodo(item);
+  expect(localStorage.getItem.mock.calls.length).toBe(3);
+  
+})
 
-  });
+test('delete', () => {
+const deleteBtn = document.querySelectorAll('#delete');
+for (let item of deleteBtn)
+  deleteTodo(item);
+expect(localStorage.getItem.mock.calls.length).toBe(3);
+
+})
+
+test('delete', () => {
+const deleteBtn = document.querySelectorAll('#delete');
+for (let item of deleteBtn)
+  deleteTodo(item);
+expect(localStorage.getItem.mock.calls.length).toBe(3);
+
+})
+});
+ 
