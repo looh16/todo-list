@@ -17,7 +17,7 @@ describe('my todo task', () => {
         
           <div class="todoTask">
             <input type="checkbox" id="todoCheck" name="todoCheck" data-todoStatus="${todo.index}" data-todoCompleted="${todo.completed}"> 
-            <input type="text" class="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
+            <input type="text" id="description" class="checkboxes" for="todoCheck" data-editID="${todo.index}" value="${todo.description}">
            
 
           </div>
@@ -59,7 +59,7 @@ describe('my todo task', () => {
 
   test('clear all', () => {
     clearAllCompleted();
-    const desc = document.querySelectorAll('.description');
+    const desc = document.querySelectorAll('#description');
 
     expect(desc.length).toBe(1);
   });
