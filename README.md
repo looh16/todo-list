@@ -2,7 +2,7 @@
 
 # todo-list
 
-> simple HTML list of To Do tasks.
+>This is a simple List of To Do tasks aplication. can add, edit and delete tasks. All tasks are saved in localStorage.
 
 
 ## Built With
